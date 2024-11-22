@@ -1,31 +1,30 @@
 version: 0.2
-
-env:
-  variables:
-    NODE_OPTIONS: '--openssl-legacy-provider'
-
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
-      - echo Installing dependencies using Node.js 18
-      - npm install
-      - npm install react-scripts --save
-      - npm install -g yarn
-
+      #install Node 12
+      - echo installing node
+      - curl -sL https://deb.nodesource.com/setup_12.x | bash -
+      - apt-get install -y nodejs
+      #install yarn
+      - echo installing yarn
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      - apt install --no-install-recommends yarn
   pre_build:
     commands:
-      - echo Installing dependencies
+      #install dependencies
+      - echo installing dependencies
       - yarn
-
   build:
     commands:
-      - echo Building the React project
+      #build
+      - echo building
       - yarn build
-
 artifacts:
   files:
-    - build/**/*
+    - "**/*"
+  discard-paths: no
   base-directory: build
-  discard-paths: yes
+
+
