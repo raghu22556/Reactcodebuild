@@ -28,4 +28,8 @@ artifacts:
   files:
     - build/**/*
   base-directory: build
+<<<<<<< HEAD
   discard-paths: yes
+=======
+  discard-paths: yes
+>>>>>>> c9dc496037c89b1eea14c451c84e85c052a0b0da
